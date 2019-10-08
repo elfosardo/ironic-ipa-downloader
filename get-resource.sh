@@ -6,7 +6,7 @@ export http_proxy=${http_proxy:-$HTTP_PROXY}
 export https_proxy=${https_proxy:-$HTTPS_PROXY}
 
 # Which image should we use
-SNAP=${1:-current-tripleo-rdo}
+SNAP=${1:-current-tripleo}
 
 FILENAME=ironic-python-agent
 FILENAME_EXT=.tar
