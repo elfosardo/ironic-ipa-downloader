@@ -7,6 +7,7 @@ export https_proxy=${https_proxy:-$HTTPS_PROXY}
 
 # Which image should we use
 SNAP=${1:-current-tripleo}
+IPA_BASEURI=${IPA_BASEURI:-https://images.rdoproject.org/train/rdo_trunk/$SNAP/}
 
 FILENAME=ironic-python-agent
 FILENAME_EXT=.tar
@@ -36,7 +37,7 @@ fi
 if [ -e $FFILENAME.headers ] ; then
     ETAG=$(awk '/ETag:/ {print $2}' $FFILENAME.headers | tr -d "\r")
     cd $TMPDIR
-    curl --verbose --dump-header $FFILENAME.headers -O https://images.rdoproject.org/train/rdo_trunk/$SNAP/$FFILENAME --header "If-None-Match: $ETAG"
+    curl --verbose --dump-header $FFILENAME.headers -O $IPA_BASEURI/$FFILENAME --header "If-None-Match: $ETAG"
     # curl didn't download anything because we have the ETag already
     # but we don't have it in the images directory
     # Its in the cache, go get it
@@ -47,7 +48,7 @@ if [ -e $FFILENAME.headers ] ; then
     fi
 else
     cd $TMPDIR
-    curl --verbose --dump-header $FFILENAME.headers -O https://images.rdoproject.org/train/rdo_trunk/$SNAP/$FFILENAME
+    curl --verbose --dump-header $FFILENAME.headers -O $IPA_BASEURI/$FFILENAME
 fi
 
 if [ -s $FFILENAME ] ; then
