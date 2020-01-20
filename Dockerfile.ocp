@@ -3,9 +3,10 @@ FROM ubi8
 # We don't need the deps that rhosp-director-images-ipa pulls in
 # use rpm to install without them to keep the image size down as
 # much as possible
-RUN yum install -y rhosp-director-images-ipa-$(uname -m) --downloadonly --downloaddir=/tmp/packages && \
-    rpm -i --nodeps /tmp/packages/rhosp-release-* /tmp/packages/rhosp-director-images-ipa-* && \
-    rm -rf /tmp/packages && \
-    yum clean all
+RUN dnf update -y && \
+    dnf install -y dnf-plugins-core && \
+    rpm -ivh --nodeps $(dnf download --url --urlprotocols=http rhosp-director-images-ipa-$(uname -m) | grep base-4-3-rhel8) && \
+    dnf clean all && \
+    rm -rf /var/cache/{yum,dnf}/*
 
 COPY ./get-resource.sh /usr/local/bin/get-resource.sh
