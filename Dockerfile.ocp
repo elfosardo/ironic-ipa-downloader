@@ -1,7 +1,7 @@
 FROM registry.ci.openshift.org/ocp/builder:rhel-8-base-openshift-4.9 AS builder
 
 ENV IMAGE_PATH=/usr/share/ironic-images
-ENV IPA_IMAGE_VER=2021.1-20210614.1.el8
+ENV IPA_IMAGE_VER=2021.2-20210721.2.test.el8
 
 RUN dnf upgrade -y && \
     dnf install -y "ironic-images-ipa-$(uname -m) >= $IPA_IMAGE_VER" && \
