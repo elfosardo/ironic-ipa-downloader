@@ -1,21 +1,17 @@
 approvers:
   - bfournie
   - derekhiggins
-  - dhellmann
   - dtantsur
   - elfosardo
+  - iurygregory
   - hardys
-  - juliakreger
-  - russellb
 reviewers:
   - bfournie
   - derekhiggins
-  - dhellmann
   - dtantsur
   - elfosardo
+  - iurygregory
   - hardys
-  - juliakreger
-  - russellb
 
 # Bugzilla Information
 component: "Bare Metal Hardware Provisioning"
